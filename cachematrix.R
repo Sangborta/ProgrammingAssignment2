@@ -8,16 +8,16 @@
 ## 4. get the value of inverse of the matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-        minv <- NULL # Intializing the value of the variable which will store the inverse 
+        minv <- NULL 				# Intializing the value of the variable which will store the inverse 
 # Using a set function to set the matrix to the object created by the makeCacheMatrix function        
 	set <- function(y) {
                 x <<- y
-                minv <<- NULL # Again initializing
+                minv <<- NULL 			# Again initializing
         }
 # Using a function get, to get the input matrix
         get <- function() x 
-        setinv <- function(inv) minv <<- inv # setting the inverse matrix
-        getinv <- function() minv # returning the inverse matrix
+        setinv <- function(inv) minv <<- inv 	# setting the inverse matrix
+        getinv <- function() minv 		# returning the inverse matrix
 # creating a list of these functions
         list(set = set, get = get,
              setinv = setinv,
@@ -32,15 +32,15 @@ makeCacheMatrix <- function(x = matrix()) {
 # This function assumes that the matrix is always invertible.
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-minv <- x$getinv() # getting the inverse matrix
-        if(!is.null(minv)) {  # Checking if Step 1 is fulfilled or not.
-                message("Retrieving from the cached data") # if Step 1 is fulfilled
-                return(minv) # gets the cached data
-        } # if Step 1 is not fulfilled
-        data <- x$get() # getting the matrix in data
-        minv <- solve(data) # Using solve function, we invert the matrix
-        x$setinv(minv) # set the value to minv
-        minv # return the value of minv
+minv <- x$getinv() 						# getting the inverse matrix
+        if(!is.null(minv)) {  					# Checking if inverse has been computed or not.
+                message("Retrieving from the cached data") 	# if it has been computed
+                return(minv) 					# gets the cached data
+        } # if inverse is not computed
+        data <- x$get() 					# getting the matrix in data
+        minv <- solve(data) 					# Using solve function, we invert the matrix
+        x$setinv(minv) 						# set the value to minv
+        minv 							# return the value of minv
 }
 ## Sample output
 ## > x = rbind(c(1,2,3), c(0,1,4), c(5,6,0))
